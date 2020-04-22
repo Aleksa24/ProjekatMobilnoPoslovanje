@@ -10,7 +10,23 @@ const routes: Routes = [
   {
     path: 'folder/:id',
     loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
+  },  {
+    path: 'home',
+    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'pretraga',
+    loadChildren: () => import('./pages/pretraga/pretraga.module').then( m => m.PretragaPageModule)
+  },
+  {
+    path: 'proizvodi',
+    loadChildren: () => import('./pages/proizvodi/proizvodi.module').then( m => m.ProizvodiPageModule)
+  },
+  {
+    path: 'kontakt',
+    loadChildren: () => import('./pages/kontakt/kontakt.module').then( m => m.KontaktPageModule)
   }
+
 ];
 
 @NgModule({
