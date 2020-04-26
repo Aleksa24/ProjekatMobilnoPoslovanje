@@ -13,30 +13,32 @@ export class AppComponent implements OnInit {
   public selectedIndex = 0;
   public appPages = [
     {
-      title: 'Inbox',
-      url: '/folder/Inbox',
-    },
-    {
-      title: 'Outbox',
-      url: '/folder/Outbox',
-    },
-    {
-      title: 'Favorites',
-      url: '/folder/Favorites',
-    },
-    {
-      title: 'Archived',
-      url: '/folder/Archived',
-    },
-    {
-      title: 'Trash',
-      url: '/folder/Trash',
-    },
-    {
-      title: 'Spam',
-      url: '/folder/Spam',
+      title: 'Profil',
+      url: 'profil',
     }
+    // ,
+    // {
+    //   title: 'Outbox',
+    //   url: '/folder/Outbox',
+    // },
+    // {
+    //   title: 'Favorites',
+    //   url: '/folder/Favorites',
+    // },
+    // {
+    //   title: 'Archived',
+    //   url: '/folder/Archived',
+    // },
+    // {
+    //   title: 'Trash',
+    //   url: '/folder/Trash',
+    // },
+    // {
+    //   title: 'Spam',
+    //   url: '/folder/Spam',
+    // }
   ];
+
 
 
   constructor(
@@ -60,4 +62,5 @@ export class AppComponent implements OnInit {
    //    this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
    //  }
   }
+
 }
