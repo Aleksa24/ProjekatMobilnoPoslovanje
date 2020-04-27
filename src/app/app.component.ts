@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Platform } from '@ionic/angular';
+import {ModalController, Platform} from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+
+import { KorpaService } from './services/korpa.service';
+import {BehaviorSubject} from 'rxjs';
+import {KorpaPage} from './pages/korpa/korpa.page';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +14,9 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent implements OnInit {
+
+  cartItemCount: BehaviorSubject<number>;
+
   public selectedIndex = 0;
   public appPages = [
     {
@@ -44,7 +51,9 @@ export class AppComponent implements OnInit {
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private cartService: KorpaService,
+    private modalCtrl: ModalController
   ) {
     this.initializeApp();
   }
@@ -61,6 +70,15 @@ export class AppComponent implements OnInit {
    //  if (path !== undefined) {
    //    this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
    //  }
+    this.cartItemCount = this.cartService.getCartItemCount();
+  }
+
+  async openCart() {
+      let modal = await this.modalCtrl.create({
+        component: KorpaPage,
+        cssClass: 'cart-modal'
+      });
+      modal.present();
   }
 
 }

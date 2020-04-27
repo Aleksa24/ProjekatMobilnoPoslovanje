@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import {KorpaService} from '../../services/korpa.service';
+
+
+import {ModalController} from '@ionic/angular';
+import {BehaviorSubject} from 'rxjs';
+
 
 @Component({
   selector: 'app-proizvodi',
@@ -7,9 +13,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProizvodiPage implements OnInit {
 
-  constructor() { }
+  cart = [];
+  products = [];
+  cartItemCount: BehaviorSubject<number>;
+
+
+  constructor(private cartService: KorpaService, private modalCtrl: ModalController ) { }
 
   ngOnInit() {
+    this.products = this.cartService.getProducts();
+    this.cart = this.cartService.getCart();
+    this.cartItemCount = this.cartService.getCartItemCount();
+  }
+
+  addToCart(product) {
+      this.cartService.addProduct(product);
+  }
+
+  openCart() {
+
   }
 
 }

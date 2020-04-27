@@ -12,11 +12,22 @@
                 </ion-list>
             </ion-content>
         </ion-menu>
+
+    <!-- dugme za korpu -->
+
     <ion-fab vertical="top" horizontal="end">
-        <ion-fab-button [routerLink]="['korpa']">
+        <ion-fab-button (click) = "openCart()" #cart>
+            <div class="cart-length">{{ cartItemCount | async }}</div>
             <ion-icon name="cart" class="cart-icon"></ion-icon>
         </ion-fab-button>
     </ion-fab>
+
+
+<!--    <ion-fab vertical="top" horizontal="end">-->
+<!--        <ion-fab-button [routerLink]="['korpa']">-->
+<!--            <ion-icon name="cart" class="cart-icon"></ion-icon>-->
+<!--        </ion-fab-button>-->
+<!--    </ion-fab>-->
 
     <ion-router-outlet id="main-content" main></ion-router-outlet>
 
