@@ -40,7 +40,7 @@ export class KorpaPage implements OnInit {
 
   // za checkout kasnije
   checkout() {
-
+    console.log('to do checkout()');
   }
 
 }

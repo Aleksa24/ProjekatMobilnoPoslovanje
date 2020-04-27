@@ -9,6 +9,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import {KorpaPageModule} from './pages/korpa/korpa.module';
+import {IonicStorageModule} from '@ionic/storage';
 
 
 
@@ -19,7 +20,8 @@ import {KorpaPageModule} from './pages/korpa/korpa.module';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    KorpaPageModule
+    KorpaPageModule,
+    IonicStorageModule.forRoot()
   ],
   providers: [
     StatusBar,

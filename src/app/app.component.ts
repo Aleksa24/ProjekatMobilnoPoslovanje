@@ -7,6 +7,8 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { KorpaService } from './services/korpa.service';
 import {BehaviorSubject} from 'rxjs';
 import {KorpaPage} from './pages/korpa/korpa.page';
+import { AuthenticationService } from './services/autentification/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -53,7 +55,9 @@ export class AppComponent implements OnInit {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private cartService: KorpaService,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private authService: AuthenticationService,
+    private router: Router
   ) {
     this.initializeApp();
   }
@@ -62,6 +66,17 @@ export class AppComponent implements OnInit {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      this.authService.autenticationState.subscribe((state) =>{
+        console.log('auth changed: ' + state)
+        if(state){
+          //jeste autentifikovan: // postaviti u side menu onoga ko je ulogovan i omoguciti da se logout uradi
+          this.router.navigate(['home']);
+        }else{
+          //nije autentifikovan
+          this.router.navigate(['login']);
+        }
+      });
     });
   }
 
@@ -81,4 +96,11 @@ export class AppComponent implements OnInit {
       modal.present();
   }
 
+  logout(){
+    this.authService.logout();
+  }
+
+  isLogedIn(){
+    return this.authService.isAuthanticated();
+  }
 }
