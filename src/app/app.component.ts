@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent implements OnInit {
+  public isCartVisible:boolean = true;
 
   cartItemCount: BehaviorSubject<number>;
 
@@ -60,6 +61,7 @@ export class AppComponent implements OnInit {
     private router: Router
   ) {
     this.initializeApp();
+    
   }
 
   initializeApp() {
@@ -86,7 +88,10 @@ export class AppComponent implements OnInit {
    //    this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
    //  }
     this.cartItemCount = this.cartService.getCartItemCount();
+    
   }
+  
+  
 
   async openCart() {
       let modal = await this.modalCtrl.create({

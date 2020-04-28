@@ -1,3 +1,4 @@
+import { AppComponent } from './../../app.component';
 import { Component, OnInit } from '@angular/core';
 import {KorpaService} from '../../services/korpa.service';
 
@@ -18,7 +19,11 @@ export class ProizvodiPage implements OnInit {
   cartItemCount: BehaviorSubject<number>;
 
 
-  constructor(private cartService: KorpaService, private modalCtrl: ModalController ) { }
+  constructor(
+              private cartService: KorpaService, 
+              private modalCtrl: ModalController, 
+              private appComponent: AppComponent
+              ) { }
 
   ngOnInit() {
     this.products = this.cartService.getProducts();
@@ -32,6 +37,10 @@ export class ProizvodiPage implements OnInit {
 
   openCart() {
 
+  }
+
+  ionViewWillEnter() {
+    this.appComponent.isCartVisible = true;
   }
 
 }

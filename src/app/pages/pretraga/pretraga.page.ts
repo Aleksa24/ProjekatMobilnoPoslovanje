@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-pretraga',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PretragaPage implements OnInit {
 
-  constructor() { }
+  constructor(private appComponent: AppComponent) { }
 
   ngOnInit() {
+  }
+
+  ionViewWillEnter() {
+    this.appComponent.isCartVisible = true;
   }
 
 }

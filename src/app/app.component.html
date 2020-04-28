@@ -17,7 +17,7 @@
 
     <!-- dugme za korpu -->
 
-    <ion-fab vertical="top" horizontal="end">
+    <ion-fab vertical="top" horizontal="end" *ngIf="isCartVisible">
         <ion-fab-button (click) = "openCart()" #cart>
             <div class="cart-length">{{ cartItemCount | async }}</div>
             <ion-icon name="cart" class="cart-icon"></ion-icon>

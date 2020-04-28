@@ -1,3 +1,4 @@
+import { AppComponent } from './../../app.component';
 import { Component, OnInit } from '@angular/core';
 import { RegisterService } from 'src/app/services/register/register.service';
 
@@ -12,7 +13,7 @@ export class RegisterPage implements OnInit {
   private username: String;
   private password: String;
 
-  constructor(private registerService: RegisterService) { }
+  constructor(private registerService: RegisterService, private appComponent: AppComponent) { }
 
   ngOnInit() {
   }
@@ -23,6 +24,10 @@ export class RegisterPage implements OnInit {
     console.log('password: ' + this.password);
 
     this.registerService.registerNewUser(this.email,this.username,this.password);
+  }
+  //za sakrivanje korpe
+  ionViewWillEnter() {
+    this.appComponent.isCartVisible = false;
   }
 
 }
