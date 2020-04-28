@@ -19,24 +19,38 @@
     <ion-list>
       <ion-item *ngFor="let p of cart" class="ion-text-wrap">
         <ion-grid>
+
+          <ion-row>
+            <ion-col size="12">
+              <b>{{ p.name }}</b>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12" class="ion-text-end" class="brojevi">
+              <ion-label color="secondary">
+                <b>{{ p.price | currency: 'RSD ' }}</b>
+              </ion-label>
+            </ion-col>
+          </ion-row>
+
           <ion-row class="ion-align-items-center">
-            <ion-col size="2" class="ion-align-self-center">
+            <ion-col size="2">
               <ion-button color="medium" fill="clear" (click) = "decreaseCartItem(p)">
                 <ion-icon name="remove-circle" slot="icon-only"></ion-icon>
               </ion-button>
             </ion-col>
 
-            <ion-col size="1" class="ion-align-self-center">
+            <ion-col size="2" class="kolicina">
               {{ p.amount }}
             </ion-col>
 
-            <ion-col size="2" class="ion-align-self-center">
+            <ion-col size="2" >
               <ion-button color="medium" fill="clear" (click)="increaseCartItem(p)">
                 <ion-icon name="add-circle" slot="icon-only"></ion-icon>
               </ion-button>
             </ion-col>
 
-            <ion-col size="2" offset="5">
+            <ion-col size="2" offset="4">
               <ion-button color="medium" fill="clear" (click)="removeCartItem(p)">
                 <ion-icon name="close-circle" slot="icon-only"></ion-icon>
               </ion-button>
@@ -44,28 +58,26 @@
 
           </ion-row>
 
-          <ion-row>
-            <ion-col size="9">
-              <b>{{ p.name }}</b>
-            </ion-col>
 
-            <ion-col size="3" class="ion-text-end" class="brojevi">
-              {{ p.price | currency: 'RSD' }}
-            </ion-col>
 
-          </ion-row>
+
+
 
         </ion-grid>
       </ion-item>
       <ion-item>
         <ion-grid>
           <ion-row>
-            <ion-col size="9">
-              Total:
+            <ion-col size="12">
+              <b>Total:</b>
             </ion-col>
-            <ion-col size="3" class="ion-text-end" class="brojevi">
-              {{ getTotal() | currency: 'RSD' }}
-            </ion-col>
+          </ion-row>
+            <ion-row>
+              <ion-col size="12"  class="ion-text-right" class="total">
+                <ion-label color="secondary">
+                 <b> {{ getTotal() | currency: 'RSD ' }} </b>
+              </ion-label>
+              </ion-col>
           </ion-row>
         </ion-grid>
       </ion-item>
