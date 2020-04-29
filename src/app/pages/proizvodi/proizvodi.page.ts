@@ -1,3 +1,4 @@
+import { ProizvodPage } from './../proizvod/proizvod.page';
 import { AppComponent } from './../../app.component';
 import { Component, OnInit } from '@angular/core';
 import {KorpaService} from '../../services/korpa.service';
@@ -18,6 +19,8 @@ export class ProizvodiPage implements OnInit {
   products = [];
   cartItemCount: BehaviorSubject<number>;
 
+ 
+
 
   constructor(
               private cartService: KorpaService, 
@@ -31,16 +34,29 @@ export class ProizvodiPage implements OnInit {
     this.cartItemCount = this.cartService.getCartItemCount();
   }
 
+  getProductId() {
+   // return this.productId;
+  }
+
   addToCart(product) {
       this.cartService.addProduct(product);
   }
 
-  openCart() {
-
-  }
-
+  //za vidljivost korpe
   ionViewWillEnter() {
     this.appComponent.isCartVisible = true;
   }
+
+
+  //za otvaranje stranice jednog proizvoda
+  async openProduct(productId) {
+    let modal = await this.modalCtrl.create({
+      component: ProizvodPage,
+      cssClass: 'product-modal'
+    });
+    modal.present();
+    this.cartService.productId = productId;
+   // console.log(this.cartService.productId);
+}
 
 }

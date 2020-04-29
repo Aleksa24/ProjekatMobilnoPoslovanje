@@ -26,27 +26,7 @@ export class AppComponent implements OnInit {
       title: 'Profil',
       url: 'profil',
     }
-    // ,
-    // {
-    //   title: 'Outbox',
-    //   url: '/folder/Outbox',
-    // },
-    // {
-    //   title: 'Favorites',
-    //   url: '/folder/Favorites',
-    // },
-    // {
-    //   title: 'Archived',
-    //   url: '/folder/Archived',
-    // },
-    // {
-    //   title: 'Trash',
-    //   url: '/folder/Trash',
-    // },
-    // {
-    //   title: 'Spam',
-    //   url: '/folder/Spam',
-    // }
+    
   ];
 
 
@@ -76,17 +56,15 @@ export class AppComponent implements OnInit {
           this.router.navigate(['home']);
         }else{
           //nije autentifikovan
-          this.router.navigate(['login']);
+          
+         // this.router.navigate(['login']);
         }
       });
     });
   }
 
   ngOnInit() {
-   // const path = window.location.pathname.split('folder/')[1];
-   //  if (path !== undefined) {
-   //    this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
-   //  }
+
     this.cartItemCount = this.cartService.getCartItemCount();
     
   }

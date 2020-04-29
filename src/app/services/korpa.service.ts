@@ -9,6 +9,7 @@ export interface Product {
   amount: number;
 
   imageUrl: string;
+  desc: string;
 }
 @Injectable({
   providedIn: 'root'
@@ -16,15 +17,21 @@ export interface Product {
 export class KorpaService {
   // privemeno su hardcodovani proizvodi, inace su u bazi
   data: Product[] = [
-    {id: 0, name: 'Hirurska maska za lice', price: 200, amount: 1, imageUrl: 'assets/images/hirurskaMaska.jpg'},
-    {id: 1, name: 'Maska za lice sa filterom', price: 400, amount: 1, imageUrl: 'assets/images/maskaSaFilterom.jpg'},
-    {id: 2, name: 'Klinicki raspirator', price: 15000, amount: 1, imageUrl: 'assets/images/raspirator.jpg'}
+    {id: 0, name: 'Hirurska maska za lice', price: 200, amount: 1, imageUrl: 'assets/images/hirurskaMaska.jpg', desc:'Hirurska maska koja stiti druge od Vase Korone.'},
+    {id: 1, name: 'Maska za lice sa filterom', price: 400, amount: 1, imageUrl: 'assets/images/maskaSaFilterom.jpg', desc:'Maska sa filterom koja Vas stiti od cestica Korone iz vazduha.'},
+    {id: 2, name: 'Klinicki raspirator', price: 15000, amount: 1, imageUrl: 'assets/images/raspirator.jpg', desc:'Klinicki raspirator za kad ste toliko bolesni da cete da riknete od Korone.'}
   ];
 
   private cart = [];
   private cartItemCount = new BehaviorSubject(0);
+  productId: number;
 
   constructor() { }
+
+  //vraca id selektovanog proizvoda sa stranice Proizvodi
+  getProductId() {
+    return this.productId;
+  }
 
   getProducts() {
     return this.data;

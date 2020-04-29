@@ -31,10 +31,10 @@ const routes: Routes = [
     path: 'profil',
     loadChildren: () => import('./pages/profil/profil.module').then( m => m.ProfilPageModule)
   },
-  {
-    path: 'korpa',
-    loadChildren: () => import('./pages/korpa/korpa.module').then( m => m.KorpaPageModule)
-  },
+  // {
+  //   path: 'korpa',
+  //   loadChildren: () => import('./pages/korpa/korpa.module').then( m => m.KorpaPageModule)
+  // },
   {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
@@ -42,7 +42,12 @@ const routes: Routes = [
   {
     path: 'register',
     loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
-  }
+  },
+  // {
+  //   path: 'proizvod',
+  //   loadChildren: () => import('./pages/proizvod/proizvod.module').then( m => m.ProizvodPageModule)
+  // }
+
 
 
 ];

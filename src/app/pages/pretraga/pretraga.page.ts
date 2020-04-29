@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from 'src/app/app.component';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-pretraga',
@@ -8,7 +9,10 @@ import { AppComponent } from 'src/app/app.component';
 })
 export class PretragaPage implements OnInit {
 
-  constructor(private appComponent: AppComponent) { }
+  constructor(
+              private appComponent: AppComponent,
+              private modalCtrl: ModalController
+              ) { }
 
   ngOnInit() {
   }
