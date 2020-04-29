@@ -56,8 +56,8 @@ export class AppComponent implements OnInit {
           this.router.navigate(['home']);
         }else{
           //nije autentifikovan
-          
-         // this.router.navigate(['login']);
+
+          this.router.navigate(['login']);
         }
       });
     });

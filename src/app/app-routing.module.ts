@@ -15,10 +15,10 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
   },
-  {
-    path: 'pretraga',
-    loadChildren: () => import('./pages/pretraga/pretraga.module').then( m => m.PretragaPageModule)
-  },
+  // {
+  //   path: 'pretraga',
+  //   loadChildren: () => import('./pages/pretraga/pretraga.module').then( m => m.PretragaPageModule)
+  // },
   {
     path: 'proizvodi',
     loadChildren: () => import('./pages/proizvodi/proizvodi.module').then( m => m.ProizvodiPageModule)
