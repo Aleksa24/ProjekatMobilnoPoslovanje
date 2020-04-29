@@ -70,15 +70,13 @@ export class KorpaService {
       }
       this.cartItemCount.next(this.cartItemCount.value - 1);
   }
-
+  //ima bag da kad se doda vise proizvoda istog tipa i kad se svi odjednom sklone ne sklone se lepo, vidi se kad
+  //se taj isti proizvod opet doda
   removeProduct(product) {
       for (let [index, p] of this.cart.entries()) {
         if (p.id === product.id) {
           this.cartItemCount.next(this.cartItemCount.value - p.amount);
-          this.cart.splice(index, p.amount);
-          //bez ovoga ima bag gde kolicina ostaje nepromenjena, kad se stavi na 0 i doda se isti proizvod jednom pise 0
-          //ovako radi odlicno
-          p.amount = 1;
+          this.cart.splice(index, 1);
         }
       }
   }
