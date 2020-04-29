@@ -10,6 +10,7 @@
 </ion-header>
 
 <ion-content>
+  <ion-searchbar (ionInput)="filterProducts($event.target.value)"></ion-searchbar>
   <ion-list>
     <ion-card *ngFor = "let p of products">
       <ion-card-header>

@@ -57,6 +57,28 @@ export class ProizvodiPage implements OnInit {
     modal.present();
     this.cartService.productId = productId;
    // console.log(this.cartService.productId);
-}
+  }
+
+  //za filtriranje proizvoda za pretragu, kod kopiran i uredjen odavde 
+  // https://masteringionic.com/blog/2017-12-15-creating-a-content-filter-with-ionic-components/
+  filterProducts(param : any) : void
+  {
+     
+
+     let val: string 	= param;
+
+     // ako je string prazan vrati sve proizvode
+     if(val.trim() === '') {
+        this.products = this.cartService.getProducts();
+     }
+     // DON'T filter the technologies IF the supplied input is an empty string
+     if (val.trim() !== '') 
+     {
+        this.products = this.products.filter((item) => 
+        {
+          return item.name.toLowerCase().indexOf(val.toLowerCase()) > -1;
+        })
+     } 
+  }
 
 }
