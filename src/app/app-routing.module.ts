@@ -42,7 +42,11 @@ const routes: Routes = [
   {
     path: 'register',
     loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
+  },  {
+    path: 'add-proizvod',
+    loadChildren: () => import('./pages/add-proizvod/add-proizvod.module').then( m => m.AddProizvodPageModule)
   },
+
   // {
   //   path: 'proizvod',
   //   loadChildren: () => import('./pages/proizvod/proizvod.module').then( m => m.ProizvodPageModule)

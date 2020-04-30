@@ -11,8 +11,9 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import {KorpaPageModule} from './pages/korpa/korpa.module';
 import {IonicStorageModule} from '@ionic/storage';
-
-
+import firebaseConfig from './firebaseConfig';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,7 +24,9 @@ import {IonicStorageModule} from '@ionic/storage';
     AppRoutingModule,
     KorpaPageModule,
     ProizvodPageModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule
   ],
   providers: [
     StatusBar,

@@ -52,6 +52,11 @@
         <ion-label>Proizvodi</ion-label>
       </ion-tab-button>
 
+      <ion-tab-button tab="add-proizvod" *ngIf="isAdminLogedIn()">
+        <ion-icon name="add"></ion-icon>
+        <ion-label>Dodaj proizvod</ion-label>
+      </ion-tab-button>
+
       <ion-tab-button tab="kontakt">
         <ion-icon name="call-outline"></ion-icon>
         <ion-label>Kontakt</ion-label>

@@ -86,4 +86,8 @@ export class AppComponent implements OnInit {
   isLogedIn(){
     return this.authService.isAuthanticated();
   }
+
+  isAdminLogedIn(){
+    return this.authService.isAuthanticated() && this.authService.curentUser.isAdmin;
+  }
 }
