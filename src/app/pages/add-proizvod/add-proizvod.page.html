@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>addProizvod</ion-title>
+    <ion-title>Dodaj proizvod</ion-title>
 
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
@@ -10,5 +10,43 @@
 </ion-header>
 
 <ion-content>
+<!-- sa udemy kursa, iz dela za pravljenje forme za dodavanje proizvoda-->
+  <form #f="ngForm" (ngSubmit)="save(f.value)">
+    <ion-item>
+      <ion-label position="floating">Naziv:</ion-label>
+      <ion-input type="text" id="name" ngModel name="name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Cena (u rsd):</ion-label>
+      <ion-input type="number" id="price" ngModel name = "price"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">URL slike:</ion-label>
+      <ion-input type="text" id="imgUrl" ngModel name = "imgUrl"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Opis:</ion-label>
+      <ion-textarea id="desc" ngModel name = "desc"></ion-textarea>
+    </ion-item>
+
+    <div class="dugmici">
+      <ion-grid>
+        <ion-row >
+          <ion-col span="6" class="ion-text-end"> 
+            <ion-button type="submit" >
+              <ion-icon name="checkmark-sharp"></ion-icon>
+            </ion-button>
+          </ion-col>  
+          <ion-col span="6" class="ion-text-start">
+            <ion-button>
+              <ion-icon name="close-sharp"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+  </form>
 
 </ion-content>
+

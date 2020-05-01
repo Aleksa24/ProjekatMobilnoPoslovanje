@@ -1,3 +1,5 @@
+import { ProductService } from './services/product/product.service';
+
 import { ProizvodPageModule } from './pages/proizvod/proizvod.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -14,6 +16,9 @@ import {IonicStorageModule} from '@ionic/storage';
 import firebaseConfig from './firebaseConfig';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,12 +31,15 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
     ProizvodPageModule,
     IonicStorageModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
+    FormsModule
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    ProductService
   ],
   bootstrap: [AppComponent]
 })

@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Storage } from '@ionic/storage';
 import { Platform } from '@ionic/angular';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { userInfo } from 'os';
+//import { userInfo } from 'os';
 import { User } from 'src/app/model/User';
 import { Router } from '@angular/router';
 
