@@ -25,17 +25,19 @@
 
     </ion-list>
     <!--dodao sam ion grid za dugmice da bih ih centrirao-->
-  <ion-grid>
-    <ion-row>
-      <ion-col span="12"> 
-        <ion-button (click)='login()' expand='block'>Login</ion-button>
-      </ion-col>  
-    </ion-row>
-    <ion-row class="ion-text-center">
-      <ion-col span="12">
-        <ion-button [routerLink]="['/register']"  color='secondary'>Register</ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <div class="dugmici">
+    <ion-grid>
+      <ion-row>
+        <ion-col span="12"> 
+          <ion-button (click)='login()' expand='block'>Login</ion-button>
+        </ion-col>  
+      </ion-row>
+      <ion-row class="ion-text-center">
+        <ion-col span="12">
+          <ion-button [routerLink]="['/register']"  color='secondary'>Register</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 
 </ion-content>
