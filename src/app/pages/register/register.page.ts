@@ -14,6 +14,9 @@ export class RegisterPage implements OnInit {
   private email: string;
   private password: string;
   private rpassword: string;
+  private username: string;
+  private name: string;
+  private lastName: string;
 
   constructor(private registerService: RegisterService,
      private appComponent: AppComponent,
@@ -33,13 +36,7 @@ export class RegisterPage implements OnInit {
     if( this.password !== this.rpassword){
       return console.error('passwords dont match')
     }
-    try {
-      const res = this.afAuth.createUserWithEmailAndPassword(this.email,this.password);
-      console.log(res);
-      this.router.navigate(['/login']);
-    } catch (err) {
-      console.dir(err);
-    }
+    this.registerService.registerNewUser(this.email,this.password,this.username,this.name,this.lastName);
     
   }
   //za sakrivanje korpe

@@ -5,6 +5,11 @@
                     <ion-list-header>Meni</ion-list-header>
 
                     <ion-menu-toggle >
+                        <ion-item>
+                          <ion-avatar>
+                            <ion-img [src]="logedInUserPicture()" [routerLink]="['profil']"></ion-img>
+                          </ion-avatar>
+                        </ion-item>
                         <ion-item *ngFor="let p of appPages" routerDirection="root" [routerLink]="[p.url]" lines="none" >
                             <ion-label>{{ p.title }}</ion-label>
                         </ion-item>

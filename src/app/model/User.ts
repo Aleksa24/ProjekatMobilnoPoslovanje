@@ -1,15 +1,60 @@
 export class User{
-    private _email: string;
-    private _isAdmin: boolean = false;
+    private uid: string;
+    private email: string;
+    private isAdmin: boolean = false;
+    private picture: string = 'https://ih1.redbubble.net/image.1046392278.3346/flat,750x,075,f-pad,750x1000,f8f8f8.jpg';//default slika
+    private username: string;
+    private name: string;
+    private lastName: string;
 
-    constructor(email: string, isAdmin: boolean){
-        this._email = email;
-        this._isAdmin = isAdmin;
+
+    constructor(uid: string, email: string, isAdmin: boolean, picture: string,username: string,name: string,lastName: string){
+        this.uid = uid;
+        this.email = email;
+        this.isAdmin = isAdmin;
+        this.picture = picture;
+        this.name = name;
+        this.username = username;
+        this.lastName = lastName;
+        if (picture == null) {
+            this.picture = 'https://ih1.redbubble.net/image.1046392278.3346/flat,750x,075,f-pad,750x1000,f8f8f8.jpg';
+        }
     }
-    get isAdmin(): boolean{
-        return this._isAdmin;
+    get getisAdmin(): boolean{
+        return this.isAdmin;
     }
-    get email(){
-        return this._email;
+    get getemail(){
+        return this.email;
+    }
+    get getpicture(){
+        return this.picture;
+    }
+    get getname(){
+        return this.name;
+    }
+    get getlastName(){
+        return this.lastName;
+    }
+    get getusername(){
+        return this.username;
+    }
+
+    set setisAdmin(isAdmin){
+        this.isAdmin = isAdmin;
+    }
+    set setemail(email){
+        this.email = email;
+    }
+    set setpicture(picture){
+        this.picture = picture;
+    }
+    set setname(name){
+        this.name = name;
+    }
+    set setlastName(lastName){
+        this.lastName = lastName;
+    }
+    set setusername(username){
+        this.username = username;
     }
 }

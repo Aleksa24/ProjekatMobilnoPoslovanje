@@ -1,7 +1,6 @@
 import { AppComponent } from './../../app.component';
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/autentification/authentication.service';
-import { auth } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
@@ -10,8 +9,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  private email: string;
-  private password: string;
+  private email: string = 'pera2@gmail.com';
+  private password: string = 'pera123';
 
   constructor(private authService: AuthenticationService,
                private appComponent:AppComponent,
