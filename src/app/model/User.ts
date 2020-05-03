@@ -1,11 +1,11 @@
 export class User{
-    private uid: string;
-    private email: string;
-    private isAdmin: boolean = false;
-    private picture: string = 'https://ih1.redbubble.net/image.1046392278.3346/flat,750x,075,f-pad,750x1000,f8f8f8.jpg';//default slika
-    private username: string;
-    private name: string;
-    private lastName: string;
+    public uid: string;
+    public email: string;
+    public isAdmin: boolean = false;
+    public picture: string = 'https://ih1.redbubble.net/image.1046392278.3346/flat,750x,075,f-pad,750x1000,f8f8f8.jpg';//default slika
+    public username: string;
+    public name: string;
+    public lastName: string;
 
 
     constructor(uid: string, email: string, isAdmin: boolean, picture: string,username: string,name: string,lastName: string){

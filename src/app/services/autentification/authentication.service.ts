@@ -35,13 +35,19 @@ export class AuthenticationService {
         console.log(this.user$);
 
         this.user$.subscribe(x => {
-          this.curentUser = x
-          console.log(x);//ovde se vide podaci koji treba da se upisu u curentUser, ali ne znam kako
+          this.curentUser.name = x.name;
+          this.curentUser.username = x.username;
+          this.curentUser.lastName = x.lastName;
+          this.curentUser.picture = x.picture;
+          this.curentUser.isAdmin = x.isAdmin;
+          this.curentUser.email = x.email;
+          this.curentUser.uid = x.uid;
+
+          console.log("curentuser:" + this.curentUser)
+
+          this.autenticationState.next(true);
         });
-        console.log('CURENT USER: ' + this.curentUser);//ovdde sam stao, nzm kako da citam podatke koje primim a siguran sam da primim dobre podatke
-        
-        this.autenticationState.next(true);
-          
+
          
         // if (userInfo.user.email === 'pera@gmail.com') {//ovako postavljam admina, nzm drugacije za sada, na firebase se automatski kreira neki user
         //   this.curentUser = new User(userInfo.user.uid,userInfo.user.email,true,null,null,null,null);
