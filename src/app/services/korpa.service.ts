@@ -37,9 +37,9 @@ export class KorpaService {
   constructor(private productService: ProductService) {
     this.data$ = this.productService.getAll();
     console.log(this.data$);
-    this.data$.subscribe(data => {
-              this.dataRaw.push(data);
-              });
+    // this.data$.subscribe(data => {
+    //           this.dataRaw.push(data);
+    //           });
     
     
    }
