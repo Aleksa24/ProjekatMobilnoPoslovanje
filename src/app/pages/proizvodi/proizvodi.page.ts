@@ -34,9 +34,6 @@ export class ProizvodiPage implements OnInit {
     this.cartItemCount = this.cartService.getCartItemCount();
   }
 
-  getProductId() {
-   // return this.productId;
-  }
 
   addToCart(product) {
       this.cartService.addProduct(product);
@@ -49,14 +46,15 @@ export class ProizvodiPage implements OnInit {
 
 
   //za otvaranje stranice jednog proizvoda
-  async openProduct(productId) {
+  async openProduct(productName) {
     let modal = await this.modalCtrl.create({
       component: ProizvodPage,
       cssClass: 'product-modal'
     });
     modal.present();
-    this.cartService.productId = productId;
+   // this.cartService.productId = productId;
    // console.log(this.cartService.productId);
+    this.cartService.productName = productName;
   }
 
   //za filtriranje proizvoda za pretragu, kod kopiran i uredjen odavde 

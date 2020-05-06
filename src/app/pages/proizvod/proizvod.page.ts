@@ -13,7 +13,8 @@ export class ProizvodPage implements OnInit {
 
   products = [];
   p: Product;
-  productId: number;
+ // productId: number;
+  productName: string;
 
   constructor(
               private cartService: KorpaService,
@@ -22,7 +23,9 @@ export class ProizvodPage implements OnInit {
 
   ngOnInit() {
     this.products = this.cartService.getProducts();
-    this.productId = this.cartService.getProductId();
+  //  this.productId = this.cartService.getProductId();
+    this.productName = this.cartService.getProductName();
+    console.log(this.productName);
     this.showProduct();
    // console.log(this.p.name);
   }
@@ -35,11 +38,23 @@ export class ProizvodPage implements OnInit {
     this.modalCtrl.dismiss();
   }
   //metoda za trazenje izabranog proizvoda u listi po IDju
+ 
+  // showProduct() {
+  //   for(let i = 0; i <= this.products.length; i++) {
+  //       if(this.products[i].id === this.productId) {
+  //         this.p = this.products[i];
+  //         //console.log(this.p.name); 
+  //         break;
+  //       }
+  //   }
+  // }
+
+   //metoda za trazenje izabranog proizvoda u listi po imenu
   showProduct() {
-    for(let i = 0; i <= this.products.length; i++) {
-        if(this.products[i].id === this.productId) {
+    for(let i = 0; i < this.products.length; i++) {
+        if(this.products[i].name === this.productName) {
           this.p = this.products[i];
-          //console.log(this.p.name);
+          //console.log(this.p.name); 
           break;
         }
     }

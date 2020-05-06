@@ -1,7 +1,10 @@
+import { Product } from './../../services/korpa.service';
+import { KorpaService } from 'src/app/services/korpa.service';
 import { ProductService } from './../../services/product/product.service';
 import { AppComponent } from 'src/app/app.component';
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-add-proizvod',
@@ -9,22 +12,31 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./add-proizvod.page.scss'],
 })
 export class AddProizvodPage implements OnInit {
-  private todo: FormGroup;
   private naziv: string;
   private cena: number;
   private opis: string;
+  private products = [];
+  private amount;
+
+  //boolovi za proveru forme
+  private nePostoji: Boolean; 
+  private unetoIme: Boolean;
+  private unetaCena: Boolean;
+  private unetaSlika: Boolean;
+  private unetOpis: Boolean;
   
-   constructor(private appComponent:AppComponent, private productService: ProductService) {
-    // this.todo = this.formBuilder.group({
-    //   title:['', Validators.required],
-    //   description:[''],
-    // });
-   }
-   logForm() {
-     console.log(this.todo.value);
-   }
+  
+   constructor(
+                private appComponent:AppComponent, 
+                private productService: ProductService, 
+                private cartService: KorpaService,
+                private toastController: ToastController) {}
+  
 
   ngOnInit() {
+    this.products = this.cartService.getProducts();
+    // this.amount = document.getElementById("amount");
+    // this.amount.value = 1;
   }
 
 
@@ -33,8 +45,70 @@ export class AddProizvodPage implements OnInit {
   }
 // za cuvanje napravljenog proizvoda
   save(product) {
+    //setovanje kolicine na 1
+    product.amount = 1;
     console.log(product);
-    this.productService.create(product);
+    console.log(product.amount);
+    //console.log(product.name);
+
+    //da li proizvod vec postoji
+
+    // for(let i = 0; i < this.products.length; i++) {
+    //   this.nePostoji = true;
+    //   if(this.products[i].name === product.name) {
+    //     //console.log(product.name); 
+    //     this.nePostoji = false;
+    //     break;
+    //   }
+    // }
+    //da li je unet naziv
+    this.unetoIme = false;
+    if(!this.isEmpty(product.name)) {
+      this.unetoIme = true;
+    }
+    //da li je uneta cena
+    this.unetaCena = false;
+    if(!this.isEmpty(product.price)) {
+      this.unetaCena = true;
+    }
+    //da li je unet URL slike
+    this.unetaSlika = false;
+    if(!this.isEmpty(product.imgUrl)) {
+      this.unetaSlika = true;
+    }
+    //da li je unet opis
+    this.unetOpis = false;
+    if(!this.isEmpty(product.desc)) {
+      this.unetOpis = true;
+    }
+    this.nePostoji = true;
+    if(this.nePostoji && this.unetoIme && this.unetaCena && this.unetaSlika && this.unetOpis) {
+      //ako je svaki uslov ispunjen pozovi funkciju koja stavlja proizvod u bazu
+      this.productService.create(product);
+    } else if(!this.unetoIme){
+      this.presentToast("Nije unet naziv");
+    } else if(!this.unetaCena) {
+      this.presentToast("Nije uneta cena");
+    } else if(!this.unetaSlika) {
+      this.presentToast("Nije unet URL slike");
+    } else if(!this.unetOpis) {
+      this.presentToast("Nije unet opis");
+    } else if(!this.nePostoji) {
+      this.presentToast("Proizvod sa tim nazivom vec postoji");
+    }
+  }
+
+  //toast poruka za obavestenje o neponjunenim poljima i da li proizvod sa tim imenom vec postoji u bazi
+  async presentToast(message) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000
+    });
+    toast.present();
+  }
+  //proverava da li je polje prazno
+  isEmpty(str: string) {
+    return (!str || 0 === str.length);
   }
 
 }
