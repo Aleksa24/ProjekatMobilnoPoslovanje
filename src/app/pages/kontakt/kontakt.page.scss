@@ -1,0 +1,38 @@
+.grid{
+    height:100%;
+  //  display:block;
+    vertical-align: middle;
+    margin-top:auto;
+    margin-bottom:auto;
+     padding:30px;
+    // size:100%;
+
+}
+.row {
+    border-bottom: 1px solid rgb(214, 212, 212);
+}
+.row2{
+    align-items:center;
+}
+
+ion-col {
+    //border-bottom: 1px solid rgb(214, 212, 212);
+    font-size: 30px;
+    color: rgb(94, 94, 94);
+}
+
+ion-label {
+    padding-right:10px;
+}
+
+.ikonice {
+    color:rgb(94, 94, 94);
+}
+
+.map {
+    height:200px;
+    width:200px;
+}
+.tekst {
+    font-size:15px;
+}
