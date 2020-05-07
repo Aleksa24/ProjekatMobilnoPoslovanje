@@ -1,3 +1,4 @@
+import { AddProizvodPage } from './../add-proizvod/add-proizvod.page';
 import { ProizvodPage } from './../proizvod/proizvod.page';
 import { AppComponent } from './../../app.component';
 import { Component, OnInit } from '@angular/core';
@@ -25,7 +26,7 @@ export class ProizvodiPage implements OnInit {
   constructor(
               private cartService: KorpaService, 
               private modalCtrl: ModalController, 
-              private appComponent: AppComponent
+              private appComponent: AppComponent,
               ) { }
 
   ngOnInit() {
@@ -42,6 +43,8 @@ export class ProizvodiPage implements OnInit {
   //za vidljivost korpe
   ionViewWillEnter() {
     this.appComponent.isCartVisible = true;
+    //apdejtuj proizvode kad god se udje na stranicu
+    this.products = this.cartService.getProducts();
   }
 
 
@@ -52,8 +55,6 @@ export class ProizvodiPage implements OnInit {
       cssClass: 'product-modal'
     });
     modal.present();
-   // this.cartService.productId = productId;
-   // console.log(this.cartService.productId);
     this.cartService.productName = productName;
   }
 
@@ -62,7 +63,6 @@ export class ProizvodiPage implements OnInit {
   filterProducts(param : any) : void
   {
      
-
      let val: string 	= param;
 
      // ako je string prazan vrati sve proizvode

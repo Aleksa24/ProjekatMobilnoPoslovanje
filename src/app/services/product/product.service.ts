@@ -14,10 +14,11 @@ export class ProductService {
 
   create(product) {
     return this.db.list('/products').push(product);
+
   }
 
   //uzimanje proizvoda sa Firebase
-  getAll(): AngularFireList<Product[]> {
-    return this.db.list('/products');   
+  getAll() {
+    return this.db.list('/products').valueChanges();   
   }
 }

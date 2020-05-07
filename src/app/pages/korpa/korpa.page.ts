@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {KorpaService, Product} from '../../services/korpa.service';
+import { KorpaService } from '../../services/korpa.service';
 
-import {ModalController} from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
+import { Product } from 'src/app/model/Product';
 
 @Component({
   selector: 'app-korpa',

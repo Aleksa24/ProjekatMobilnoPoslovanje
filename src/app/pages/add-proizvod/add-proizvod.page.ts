@@ -1,9 +1,7 @@
-import { Product } from './../../services/korpa.service';
 import { KorpaService } from 'src/app/services/korpa.service';
 import { ProductService } from './../../services/product/product.service';
 import { AppComponent } from 'src/app/app.component';
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ToastController } from '@ionic/angular';
 
 @Component({
@@ -35,8 +33,6 @@ export class AddProizvodPage implements OnInit {
 
   ngOnInit() {
     this.products = this.cartService.getProducts();
-    // this.amount = document.getElementById("amount");
-    // this.amount.value = 1;
   }
 
 
@@ -48,19 +44,16 @@ export class AddProizvodPage implements OnInit {
     //setovanje kolicine na 1
     product.amount = 1;
     console.log(product);
-    console.log(product.amount);
-    //console.log(product.name);
 
     //da li proizvod vec postoji
-
-    // for(let i = 0; i < this.products.length; i++) {
-    //   this.nePostoji = true;
-    //   if(this.products[i].name === product.name) {
-    //     //console.log(product.name); 
-    //     this.nePostoji = false;
-    //     break;
-    //   }
-    // }
+    for(let i = 0; i < this.products.length; i++) {
+      this.nePostoji = true;
+      if(this.products[i].name === product.name) {
+        console.log(product.name); 
+        this.nePostoji = false;
+        break;
+      }
+    }
     //da li je unet naziv
     this.unetoIme = false;
     if(!this.isEmpty(product.name)) {
@@ -81,10 +74,12 @@ export class AddProizvodPage implements OnInit {
     if(!this.isEmpty(product.desc)) {
       this.unetOpis = true;
     }
-    this.nePostoji = true;
+    //this.nePostoji = true;
     if(this.nePostoji && this.unetoIme && this.unetaCena && this.unetaSlika && this.unetOpis) {
       //ako je svaki uslov ispunjen pozovi funkciju koja stavlja proizvod u bazu
       this.productService.create(product);
+    } else if(!this.nePostoji) {
+      this.presentToast("Proizvod sa tim nazivom vec postoji");
     } else if(!this.unetoIme){
       this.presentToast("Nije unet naziv");
     } else if(!this.unetaCena) {
@@ -93,9 +88,7 @@ export class AddProizvodPage implements OnInit {
       this.presentToast("Nije unet URL slike");
     } else if(!this.unetOpis) {
       this.presentToast("Nije unet opis");
-    } else if(!this.nePostoji) {
-      this.presentToast("Proizvod sa tim nazivom vec postoji");
-    }
+    } 
   }
 
   //toast poruka za obavestenje o neponjunenim poljima i da li proizvod sa tim imenom vec postoji u bazi
