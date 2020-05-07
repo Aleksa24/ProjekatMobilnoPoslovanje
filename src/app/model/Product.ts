@@ -45,8 +45,8 @@ export class Product {
         return this.amount;
     }
 
-    get getImageUrl() {
-        return this.imageUrl;
+    get getImgUrl() {
+        return this.imgUrl;
     }
 
     get getDesc() {
@@ -65,8 +65,8 @@ export class Product {
         this.amount = amount;
     }
 
-    set setImageUrl(imageUrl) {
-        this.imageUrl = imageUrl;
+    set setImgUrl(imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     set setDesc(desc) {
