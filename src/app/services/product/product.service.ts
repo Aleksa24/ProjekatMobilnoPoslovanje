@@ -26,7 +26,24 @@ export class ProductService {
     let next =  this.http.post<Product>("http://localhost:8080/api/v1/product/save", 
                                   JSON.stringify(product),
                                   {headers: headers}).subscribe(
-                                    (error) => {console.dir("error:" + error)}
+                                    (returnedProduct) => {
+                                        console.dir("product:" + returnedProduct)//sa ovim proizvodom radis sta hoces, ne moras da se subscribe ovde, mozes da vratis pre subscribe, tad ce vratiti Observable<Product>
+                                        let productToWorkWith: Product = new Product(returnedProduct.id,
+                                            returnedProduct.name,
+                                            returnedProduct.price,
+                                            returnedProduct.amount,
+                                            returnedProduct.imgUrl,
+                                            returnedProduct.desc);
+                                        console.log("productToWorkWith:"+{productToWorkWith});
+                                        console.log(returnedProduct.id);
+                                        console.log(returnedProduct.name);
+                                        console.log(returnedProduct.price);
+                                        console.log(returnedProduct.amount);
+                                        console.log(returnedProduct.imgUrl);
+                                        console.log(returnedProduct.desc);
+                                    },(error => {
+                                        console.dir(error);
+         })
                                   );
    
    return next;
