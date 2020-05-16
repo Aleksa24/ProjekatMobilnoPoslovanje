@@ -39,4 +39,5 @@ export class KontaktPage implements OnInit {
    
   }
 
+
 }

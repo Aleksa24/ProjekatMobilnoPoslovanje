@@ -1,12 +1,12 @@
 export class User{
-    private readonly id: number;
+    public id: number;
     public email: string;
     public isAdmin: boolean = false;
     public picture: string = 'https://ih1.redbubble.net/image.1046392278.3346/flat,750x,075,f-pad,750x1000,f8f8f8.jpg';//default slika
-    private username: string;
-    private name: string;
-    private lastName: string;
-    private password: string;
+    public username: string;
+    public name: string;
+    public lastName: string;
+    public password: string;
 
 
     constructor(id: number, email: string, isAdmin: boolean, picture: string,username: string,name: string,lastName: string){
@@ -28,19 +28,19 @@ export class User{
     get getisAdmin(): boolean{
         return this.isAdmin;
     }
-    get getemail(){
+    get getemail():string{
         return this.email;
     }
-    get getpicture(){
+    get getpicture():string{
         return this.picture;
     }
-    get getname(){
+    get getname():string{
         return this.name;
     }
-    get getlastName(){
+    get getlastName():string{
         return this.lastName;
     }
-    get getusername(){
+    get getusername():string{
         return this.username;
     }
 

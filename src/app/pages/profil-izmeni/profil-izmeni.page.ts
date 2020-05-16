@@ -39,14 +39,16 @@ export class ProfilIzmeniPage implements OnInit {
   }
 
   updateUser(){
+    console.log("usao je u metodu");
     let user = new User(
-        this.logedInUser.getid,
-        this.logedInUser.getemail,
-        this.logedInUser.getisAdmin,
-        this.logedInUser.getpicture,
+        this.logedInUser.id,
+        this.logedInUser.email,
+        this.logedInUser.isAdmin,
+        this.logedInUser.picture,
         this.formGroup.get('username').value,
         this.formGroup.get('name').value,
         this.formGroup.get('lastName').value);
+    console.log("kreirao je usera:");
     this.authService.updateUser(user);
 
   }
