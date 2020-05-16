@@ -80,17 +80,24 @@ export class AuthenticationService {
 
     updateUser(userToUpdate: User){
         let headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
+
+        console.log(userToUpdate);
         return this.http.put<User>("http://localhost:8080/api/v1/users/update",
             JSON.stringify(userToUpdate),
             {headers: headers}).subscribe(
                 (updatedUser) =>
         {
+            debugger;
             console.log("updatedUser:");
             console.log(updatedUser);
             this.curentUser = updatedUser;
             console.log("curentUser");
             console.log(this.curentUser);
-        }).unsubscribe();
+        },
+            (error) =>{
+                    debugger;
+                    console.dir(error);
+            });
     }
 
 }

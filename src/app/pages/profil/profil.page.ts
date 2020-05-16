@@ -9,7 +9,7 @@ import { AuthenticationService } from 'src/app/services/autentification/authenti
   styleUrls: ['./profil.page.scss'],
 })
 export class ProfilPage implements OnInit {
-  
+
   user: User;
 
   constructor(private appComponent: AppComponent,
@@ -24,6 +24,19 @@ export class ProfilPage implements OnInit {
 
   ionViewWillEnter() {
     this.appComponent.isCartVisible = false;
+  }
+
+  getEmail(){
+    return this.authService.curentUser.email;
+  }
+  getUsername(){
+    return this.authService.curentUser.username;
+  }
+  getName(){
+    return this.authService.curentUser.name;
+  }
+  getLastName(){
+    return this.authService.curentUser.lastName;
   }
 
 }
