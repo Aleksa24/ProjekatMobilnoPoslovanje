@@ -3,13 +3,10 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Storage } from '@ionic/storage';
 import { Platform } from '@ionic/angular';
 import { AngularFireAuth } from '@angular/fire/auth';
-//import { userInfo } from 'os';
 import { User } from 'src/app/model/User';
-import { Router } from '@angular/router';
 import { AngularFireDatabase } from '@angular/fire/database';
-import { UserService } from '../user/user.service';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 
-const TOKEN_KEY = 'auth-token';//kljic za mapu u storage
 
 @Injectable({
   providedIn: 'root'
@@ -17,77 +14,83 @@ const TOKEN_KEY = 'auth-token';//kljic za mapu u storage
 export class AuthenticationService {
 
   autenticationState = new BehaviorSubject(false);
-  public curentUser: User = new User(null,null,false,null,null,null,null);//mora da se da null vrednost na pocetku da bi funkcije neke citale iz njega 
+  public curentUser: User = new User(null,null,false,null,null,null,null);//mora da se da null vrednost na pocetku da bi funkcije neke citale iz njega
   user$: Observable<User>;
 
   constructor(private storage: Storage,
      private plt: Platform,
-    public afAuth: AngularFireAuth,
+     public afAuth: AngularFireAuth,
      private db: AngularFireDatabase,
-     private userService: UserService) {
+              private http: HttpClient) {
     
   }
 
   login(email: string, password: string){
-    try {
-      this.afAuth.signInWithEmailAndPassword(email, password).then(userInfo => {
-        this.user$ = this.userService.get(userInfo.user.uid);
-        console.log(this.user$);
-
-        this.user$.subscribe(x => {
-          this.curentUser.name = x.name;
-          this.curentUser.username = x.username;
-          this.curentUser.lastName = x.lastName;
-          this.curentUser.picture = x.picture;
-          this.curentUser.isAdmin = x.isAdmin;
-          this.curentUser.email = x.email;
-          this.curentUser.uid = x.uid;
-
-          console.log("curentuser:" + this.curentUser)
-
+      let headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
+      return this.http.post<User>("http://localhost:8080/api/v1/users/login",
+          {email,password},
+          {headers: headers}).subscribe( (user) =>{
+          this.curentUser = user;
+          console.log('curentUser:');
+          console.log(this.curentUser);
           this.autenticationState.next(true);
-        });
+          return user;
+      },
+          error1 => {
+              debugger;
+              console.dir(error1);
+              if(error1.message === "User is Is Already loged in"){
+                  //odraditi nesto da se kaze useru da je acc vec ulogovan
+                  console.log('odraditi nesto da se kaze useru da je acc vec ulogovan');
+              }
+          });
 
-         
-        // if (userInfo.user.email === 'pera@gmail.com') {//ovako postavljam admina, nzm drugacije za sada, na firebase se automatski kreira neki user
-        //   this.curentUser = new User(userInfo.user.uid,userInfo.user.email,true,null,null,null,null);
-        //   this.autenticationState.next(true);
-        //   console.log('logovan je pera pa je i admin'); 
-        // }else{
-        //   this.curentUser = new User(userInfo.user.uid,userInfo.user.email,false,null,null,null,null);
-        //   this.autenticationState.next(true);
-        // }
-
-      });
-    } catch (err) {
-      console.dir(err);
-      if(err === 'auth/user-not-found'){
-        console.log('user not found');
-        //moze da se doda neko ponasanje ako korisnik ne postoji
-      }
-    }
   }
 
-  logout(){
-    try {
-      this.afAuth.signOut;
-      this.autenticationState.next(false);
-      //moze da se doda navigacija kad se logout
-    } catch (error) {
-      console.dir(error);
-    }
+  logout():void{
+      let headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
+      this.http.post<{message:string}>("http://localhost:8080/api/v1/users/logout",
+          JSON.stringify(this.curentUser),
+          {headers: headers}).subscribe(
+              (data) => {
+                  debugger;
+              this.autenticationState.next(false);
+              this.curentUser = new User(null,null,false,null,null,null,null);
+              console.log(`Message from server:${data.message}`);
+      },error1 => {
+              console.dir(error1);
+      })
+
   }
 
   isAuthanticated(){
     return this.autenticationState.value;
   }
 
-  // checkToken(){
-  //   this.storage.get(TOKEN_KEY).then( res =>{
-  //     if(res){
-  //       this.autenticationState.next(true);
-  //     }
-  //   });
-  // }
+  getCurentUser():User{
+    return this.curentUser;
+  }
+
+  register(userToRegister: User) {
+      let headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
+      return this.http.post<User>("http://localhost:8080/api/v1/users/register",
+          JSON.stringify(userToRegister),
+          {headers: headers});
+  }
+
+    updateUser(userToUpdate: User){
+        let headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
+        return this.http.put<User>("http://localhost:8080/api/v1/users/update",
+            JSON.stringify(userToUpdate),
+            {headers: headers}).subscribe(
+                (updatedUser) =>
+        {
+            console.log("updatedUser:");
+            console.log(updatedUser);
+            this.curentUser = updatedUser;
+            console.log("curentUser");
+            console.log(this.curentUser);
+        }).unsubscribe();
+    }
 
 }

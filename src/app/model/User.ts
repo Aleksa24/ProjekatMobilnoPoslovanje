@@ -1,15 +1,16 @@
 export class User{
-    public uid: string;
+    private readonly id: number;
     public email: string;
     public isAdmin: boolean = false;
     public picture: string = 'https://ih1.redbubble.net/image.1046392278.3346/flat,750x,075,f-pad,750x1000,f8f8f8.jpg';//default slika
-    public username: string;
-    public name: string;
-    public lastName: string;
+    private username: string;
+    private name: string;
+    private lastName: string;
+    private password: string;
 
 
-    constructor(uid: string, email: string, isAdmin: boolean, picture: string,username: string,name: string,lastName: string){
-        this.uid = uid;
+    constructor(id: number, email: string, isAdmin: boolean, picture: string,username: string,name: string,lastName: string){
+        this.id = id;
         this.email = email;
         this.isAdmin = isAdmin;
         this.picture = picture;
@@ -20,6 +21,10 @@ export class User{
             this.picture = 'https://ih1.redbubble.net/image.1046392278.3346/flat,750x,075,f-pad,750x1000,f8f8f8.jpg';
         }
     }
+    get getid():number{
+        return this.id;
+    }
+
     get getisAdmin(): boolean{
         return this.isAdmin;
     }
@@ -39,22 +44,25 @@ export class User{
         return this.username;
     }
 
-    set setisAdmin(isAdmin){
+    setisAdmin(isAdmin){
         this.isAdmin = isAdmin;
     }
-    set setemail(email){
+    setemail(email){
         this.email = email;
     }
-    set setpicture(picture){
+    setpicture(picture){
         this.picture = picture;
     }
-    set setname(name){
+    setname(name){
         this.name = name;
     }
-    set setlastName(lastName){
+    setlastName(lastName){
         this.lastName = lastName;
     }
-    set setusername(username){
+    setusername(username){
         this.username = username;
+    }
+    setpassword(password){
+        this.password = password;
     }
 }

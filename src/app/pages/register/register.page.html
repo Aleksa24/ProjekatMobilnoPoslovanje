@@ -11,47 +11,60 @@
 
 <ion-content>
 
-  <ion-list>
+  <form [formGroup]="formGroup" (submit)="register()">
 
     <ion-item>
-      <ion-label position="floating">Name:</ion-label>
-      <ion-input clearInput type="text" [(ngModel)]='name'></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="floating">Last Name:</ion-label>
-      <ion-input clearInput type="text" [(ngModel)]='lastName'></ion-input>
+      <ion-label position="floating">Email:</ion-label>
+      <ion-input clearInput type="text" formControlName="email"></ion-input>
+      <p style="color: red; font-size: small;" *ngIf="!formGroup.get('email').valid && formGroup.get('email').touched">Required email</p>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Username:</ion-label>
-      <ion-input clearInput type="text" [(ngModel)]='username'></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="floating">Email:</ion-label>
-      <ion-input clearInput type="email" [(ngModel)]='email'></ion-input>
+      <ion-input clearInput type="text" formControlName="username"></ion-input>
+      <p style="color: red; font-size: small;" *ngIf="!formGroup.get('username').valid && formGroup.get('username').touched">Required username</p>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Password:</ion-label>
-      <ion-input clearInput type="password" [(ngModel)]='password'></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Repeat Password:</ion-label>
-      <ion-input clearInput type="password" [(ngModel)]='rpassword'></ion-input>
+      <ion-input clearInput type="password" formControlName="password"></ion-input>
+      <p style="color: red; font-size: small;" *ngIf="!formGroup.get('password').valid && formGroup.get('password').touched">Required</p>
     </ion-item>
 
-  </ion-list>
-  <div class = "dugmici">
-    <ion-grid>
-      <ion-row>
-        <ion-col span="12">
-          <ion-button (click)='register()' expand='block'>Register</ion-button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </div>
-  
+    <ion-item>
+      <ion-label position="floating">Repeat Password:</ion-label>
+      <ion-input clearInput type="password" formControlName="repeatpassword"></ion-input>
+      <p style="color: red; font-size: small;" *ngIf="!formGroup.get('repeatpassword').valid && formGroup.get('repeatpassword').touched">Required</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Name:</ion-label>
+      <ion-input clearInput type="text" formControlName="name"></ion-input>
+      <p style="color: red; font-size: small;" *ngIf="!formGroup.get('name').valid && formGroup.get('name').touched">Required name</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Last Name:</ion-label>
+      <ion-input clearInput type="text" formControlName="lastName"></ion-input>
+      <p style="color: red; font-size: small;" *ngIf="!formGroup.get('lastName').valid && formGroup.get('lastName').touched">Required lastName</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Picture:</ion-label>
+      <ion-input clearInput type="text" formControlName="picture"></ion-input>
+<!--      <p style="color: red; font-size: small;" *ngIf="!formGroup.get('username').valid && formGroup.get('username').touched">Required username</p>-->
+    </ion-item>
+
+    <div class = "dugmici">
+      <ion-grid>
+        <ion-row>
+          <ion-col span="12">
+            <ion-button type="submit" expand='block' [disabled]="!formGroup.valid" >Register</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </form>
+
 
 </ion-content>

@@ -16,12 +16,14 @@ export class KontaktPage implements OnInit {
   constructor(private appComponent: AppComponent) { }
 
   ngOnInit() {
+
   }
 
   ionViewWillEnter() {
     this.appComponent.isCartVisible = true;
     this.initMap();
   }
+
 
   initMap() {
     let latLng = new google.maps.LatLng(44.772667, 20.475230);

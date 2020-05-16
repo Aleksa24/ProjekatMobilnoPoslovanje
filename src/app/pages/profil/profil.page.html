@@ -9,7 +9,6 @@
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content>
 
   <ion-grid  class="grid">
@@ -31,6 +30,33 @@
           <ion-label color="primary">{{user.email}}</ion-label>
         </ion-col> -->
 
+      </ion-row>
+
+      <ion-row class="ion-text-center">
+          <ion-col>
+              <ion-label color="primary"><b>Username:</b></ion-label>
+              <ion-label style="padding-left: 10px;" >{{user.username}}</ion-label>
+          </ion-col>
+      </ion-row>
+
+      <ion-row class="ion-text-center">
+          <ion-col>
+              <ion-label color="primary"><b>Name:</b></ion-label>
+              <ion-label style="padding-left: 10px;" >{{user.name}}</ion-label>
+          </ion-col>
+      </ion-row>
+
+      <ion-row class="ion-text-center">
+          <ion-col>
+              <ion-label color="primary"><b>Last name:</b></ion-label>
+              <ion-label style="padding-left: 10px;" >{{user.lastName}}</ion-label>
+          </ion-col>
+      </ion-row>
+
+      <ion-row class="ion-text-center dugmici">
+          <ion-col span="12">
+              <ion-button routerLink='/profil-izmeni' color='secondary'>Izmeni profil</ion-button>
+          </ion-col>
       </ion-row>
   </ion-grid>
 

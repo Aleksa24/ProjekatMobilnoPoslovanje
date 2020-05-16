@@ -46,6 +46,10 @@ const routes: Routes = [
     path: 'add-proizvod',
     loadChildren: () => import('./pages/add-proizvod/add-proizvod.module').then( m => m.AddProizvodPageModule)
   },
+  {
+    path: 'profil-izmeni',
+    loadChildren: () => import('./pages/profil-izmeni/profil-izmeni.module').then( m => m.ProfilIzmeniPageModule)
+  },
 
   // {
   //   path: 'proizvod',

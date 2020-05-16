@@ -41,7 +41,6 @@ export class AppComponent implements OnInit {
     private router: Router
   ) {
     this.initializeApp();
-    
   }
 
   initializeApp() {
@@ -88,13 +87,20 @@ export class AppComponent implements OnInit {
   }
 
   isAdminLogedIn(){
-    return this.authService.isAuthanticated() && this.authService.curentUser.getisAdmin;
+    return this.authService.isAuthanticated() && this.authService.curentUser.isAdmin;
   }
   logedInUserPicture(){
     if (this.authService.isAuthanticated) {
-      return this.authService.curentUser.getpicture;
+      return this.authService.curentUser.picture;
     } else {
       return 'https://ih1.redbubble.net/image.1046392278.3346/flat,750x,075,f-pad,750x1000,f8f8f8.jpg';
+    }
+  }
+  logedInUserEmail(){
+    if (this.authService.isAuthanticated) {
+      return this.authService.curentUser.email;
+    } else {
+      return 'not loged in';
     }
   }
 }

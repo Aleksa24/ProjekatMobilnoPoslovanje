@@ -3,6 +3,7 @@ import { ProductService } from './../../services/product/product.service';
 import { AppComponent } from 'src/app/app.component';
 import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
+import {FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-add-proizvod',
@@ -10,6 +11,8 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['./add-proizvod.page.scss'],
 })
 export class AddProizvodPage implements OnInit {
+  registrationForm: FormGroup;
+
   private naziv: string;
   private cena: number;
   private opis: string;
@@ -78,7 +81,8 @@ export class AddProizvodPage implements OnInit {
     if(this.nePostoji && this.unetoIme && this.unetaCena && this.unetaSlika && this.unetOpis) {
       //ako je svaki uslov ispunjen pozovi funkciju koja stavlja proizvod u bazu
       this.productService.create(product);
-    } else if(!this.nePostoji) {
+    }
+    else if(!this.nePostoji) {
       this.presentToast("Proizvod sa tim nazivom vec postoji");
     } else if(!this.unetoIme){
       this.presentToast("Nije unet naziv");
@@ -88,7 +92,7 @@ export class AddProizvodPage implements OnInit {
       this.presentToast("Nije unet URL slike");
     } else if(!this.unetOpis) {
       this.presentToast("Nije unet opis");
-    } 
+    }
   }
 
   //toast poruka za obavestenje o neponjunenim poljima i da li proizvod sa tim imenom vec postoji u bazi
