@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireList } from '@angular/fire/database';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
 @Injectable({
@@ -10,7 +11,10 @@ import { AngularFireList } from '@angular/fire/database';
 })
 export class ProductService {
 
-  constructor(private db: AngularFireDatabase) { }
+  constructor(
+              private db: AngularFireDatabase,
+              private http: HttpClient
+              ) { }
 
   create(product) {
     return this.db.list('/products').push(product);
@@ -18,7 +22,13 @@ export class ProductService {
   }
 
   //uzimanje proizvoda sa Firebase
+  // getAll() {
+  //   return this.db.list('/products').valueChanges();   
+  // }
+  //uzimanje proizvoda sa http req sa naseg servera
   getAll() {
-    return this.db.list('/products').valueChanges();   
+      let headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
+      return this.http.get<Product>("http://localhost:8080/api/v1/product");
   }
+
 }

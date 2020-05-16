@@ -2,7 +2,7 @@ import { ProductService } from './../services/product/product.service';
 
 
 export class Product {
-   // public uid: string;
+    public uid: string;
     public name: string;
     public price: number;
     public amount: number;
@@ -11,14 +11,14 @@ export class Product {
 
 
 
-    constructor(//uid: string, 
+    constructor(uid: string, 
                 name: string, 
                 price: number, 
                 amount: number, 
                 imageUrl: string, 
                 desc: string
                 ) {
-                   // this.uid = uid;
+                    this.uid = uid;
                     this.name = name;
                     this.price = price;
                     this.amount = amount;
@@ -29,9 +29,9 @@ export class Product {
 
     }
 
-    // get getUid() {
-    //     return this.uid;
-    // }
+    get getUid() {
+        return this.uid;
+    }
 
     get getName() {
         return this.name;

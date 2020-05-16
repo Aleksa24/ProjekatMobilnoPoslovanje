@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AppComponent } from 'src/app/app.component';
 
+declare var google;
 
 @Component({
   selector: 'app-kontakt',
