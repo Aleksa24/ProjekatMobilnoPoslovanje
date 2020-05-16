@@ -8,8 +8,14 @@ import { Product } from '../model/Product';
 })
 export class KorpaService {
   // proizvodi povuceni sa firebase
-  data: Product[];
-  data$;
+  // data: Product[];
+  // data$;
+
+
+  dataHttp$;
+  dataHttpString: string;
+  dataHttp;
+  data2: Product[];
   
 
   private cart = [];
@@ -19,12 +25,34 @@ export class KorpaService {
  
 
   constructor(private productService: ProductService) {
-    this.data$ = this.productService.getAll();
-    console.log(this.data$);
-    this.data$.subscribe(list => {
-      this.data = list;
-      console.log(this.data);
-    });
+    // this.data$ = this.productService.getAll();
+    // console.log(this.data$);
+    // this.data$.subscribe(list => {
+    //   this.data = list;
+    //   console.log(this.data);
+    // });
+    
+    // this.dataHttp$ = this.productService.getAllHTTP();
+    // this.dataHttp$.subscribe(list => {
+    //   this.dataHttpString = JSON.stringify(list);
+    //   this.dataHttp = JSON.parse(this.dataHttpString);
+    //   this.data2 = JSON.parse(this.dataHttpString);
+
+    //   //puni se niz proizvoda
+    //   for(let i = 0; i<this.dataHttp.length; i++) {
+    //     this.data2[i].name = this.dataHttp[i].name;
+    //     this.data2[i].price = this.dataHttp[i].price;
+    //     this.data2[i].amount = this.dataHttp[i].amount;
+    //     this.data2[i].imgUrl = this.dataHttp[i].imgUrl;
+    //     this.data2[i].desc = this.dataHttp[i].desc;
+        
+
+    //   }
+    //   console.log(this.data2);
+    // });
+    this.getProducts();
+    
+
     
    }
 
@@ -34,7 +62,32 @@ export class KorpaService {
   }
 
   getProducts() {
-    return this.data;
+   // return this.data;
+    
+
+
+    this.dataHttp$ = this.productService.getAllHTTP();
+    this.dataHttp$.subscribe(list => {
+      this.dataHttpString = JSON.stringify(list);
+      this.dataHttp = JSON.parse(this.dataHttpString);
+      this.data2 = JSON.parse(this.dataHttpString);
+
+      //puni se niz proizvoda
+      for(let i = 0; i<this.dataHttp.length; i++) {
+        this.data2[i].name = this.dataHttp[i].name;
+        this.data2[i].price = this.dataHttp[i].price;
+        this.data2[i].amount = this.dataHttp[i].amount;
+        this.data2[i].imgUrl = this.dataHttp[i].imgUrl;
+        this.data2[i].desc = this.dataHttp[i].desc;
+        
+
+      }
+      console.log(this.data2);
+    }); 
+
+    return this.data2;
+
+
   }
   getCart() {
     return this.cart;
