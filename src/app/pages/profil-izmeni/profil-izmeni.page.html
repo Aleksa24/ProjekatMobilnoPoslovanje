@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Profil-Izmeni</ion-title>
+
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form [formGroup]="formGroup" (submit)="updateUser()">
+
+      <ion-item>
+        <ion-label position="floating">Name:</ion-label>
+        <ion-input clearInput type="text" formControlName="name"></ion-input>
+        <p style="color: red; font-size: small;" *ngIf="!formGroup.get('name').valid && formGroup.get('name').touched">Required name</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Last Name:</ion-label>
+        <ion-input clearInput type="text" formControlName="lastName"></ion-input>
+        <p style="color: red; font-size: small;" *ngIf="!formGroup.get('lastName').valid && formGroup.get('lastName').touched">Required lastName</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Username:</ion-label>
+        <ion-input clearInput type="text" formControlName="username"></ion-input>
+        <p style="color: red; font-size: small;" *ngIf="!formGroup.get('username').valid && formGroup.get('username').touched">Required username</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Picture:</ion-label>
+        <ion-input clearInput type="text" formControlName="picture"></ion-input>
+<!--        <p style="color: red; font-size: small;" *ngIf="!formGroup.get('username').valid && formGroup.get('username').touched">Required username</p>-->
+      </ion-item>
+
+      <div class = "dugmici">
+        <ion-grid>
+          <ion-row>
+            <ion-col span="12">
+              <ion-button type="submit" expand='block' [disabled]="!formGroup.valid" >Izmeni</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </form>
+
+</ion-content>
