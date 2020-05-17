@@ -44,6 +44,8 @@ export class AddProizvodPage implements OnInit {
   }
 // za cuvanje napravljenog proizvoda
   save(product) {
+    //da bi uvek radila provera da li taj proizvod vec postoji
+    this.products = this.cartService.getProducts();
     //setovanje kolicine na 1
     product.amount = 1;
     console.log(product);
@@ -77,7 +79,7 @@ export class AddProizvodPage implements OnInit {
     if(!this.isEmpty(product.desc)) {
       this.unetOpis = true;
     }
-    this.nePostoji = true;
+    //this.nePostoji = true;
     if(this.nePostoji && this.unetoIme && this.unetaCena && this.unetaSlika && this.unetOpis) {
       //ako je svaki uslov ispunjen pozovi funkciju koja stavlja proizvod u bazu
       this.productService.create(product);

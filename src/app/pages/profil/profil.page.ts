@@ -20,10 +20,13 @@ export class ProfilPage implements OnInit {
       this.user = null;
     }
     this.user = this.authService.curentUser;
+    
   }
 
   ionViewWillEnter() {
     this.appComponent.isCartVisible = false;
+    //da bi se apdejtovala slika na profil strani ako korisnik menja profil
+    this.user = this.authService.getCurentUser();
   }
 
   getEmail(){

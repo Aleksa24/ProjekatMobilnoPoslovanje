@@ -11,19 +11,21 @@ export class Product {
 
 
 
-    constructor(id: number,
+    constructor(//id: number,
                 name: string, 
                 price: number, 
                 amount: number, 
-                imageUrl: string, 
+                imgUrl: string, 
                 desc: string
                 ) {
-                    this.id = id;
+                   // this.id = id;
                     this.name = name;
                     this.price = price;
                     this.amount = amount;
-                    if(this.imgUrl == null) {
+                    if(this.imgUrl === null) {
                         this.imgUrl = "https://www.amerikickkansas.com/wp-content/uploads/2017/04/default-image.jpg";
+                    } else {
+                        this.imgUrl = imgUrl;
                     }
                     this.desc = desc;
 

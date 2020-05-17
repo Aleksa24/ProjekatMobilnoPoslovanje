@@ -19,6 +19,8 @@ export class User{
         this.lastName = lastName;
         if (picture == null) {
             this.picture = 'https://ih1.redbubble.net/image.1046392278.3346/flat,750x,075,f-pad,750x1000,f8f8f8.jpg';
+        } else {
+            this.picture = picture;
         }
     }
     get getid():number{

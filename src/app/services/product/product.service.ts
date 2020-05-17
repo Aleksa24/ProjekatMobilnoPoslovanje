@@ -12,6 +12,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ProductService {
+  p: Product;
 
   constructor(
               private db: AngularFireDatabase,
@@ -23,30 +24,16 @@ export class ProductService {
     let headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
     console.log(product);
     console.log(JSON.stringify(product));
-    let next =  this.http.post<Product>("http://localhost:8080/api/v1/product/save", 
-                                  JSON.stringify(product),
+
+    this.p = new Product(product.name, product.price, product.amount, product.imgUrl, product.desc);
+    console.log("Proizvod: "+this.p);
+
+    return  this.http.post<Product>("http://localhost:8080/api/v1/product/save", 
+                                  JSON.stringify(this.p),
                                   {headers: headers}).subscribe(
-                                    (returnedProduct) => {
-                                        console.dir("product:" + returnedProduct)//sa ovim proizvodom radis sta hoces, ne moras da se subscribe ovde, mozes da vratis pre subscribe, tad ce vratiti Observable<Product>
-                                        let productToWorkWith: Product = new Product(returnedProduct.id,
-                                            returnedProduct.name,
-                                            returnedProduct.price,
-                                            returnedProduct.amount,
-                                            returnedProduct.imgUrl,
-                                            returnedProduct.desc);
-                                        console.log("productToWorkWith:"+{productToWorkWith});
-                                        console.log(returnedProduct.id);
-                                        console.log(returnedProduct.name);
-                                        console.log(returnedProduct.price);
-                                        console.log(returnedProduct.amount);
-                                        console.log(returnedProduct.imgUrl);
-                                        console.log(returnedProduct.desc);
-                                    },(error => {
-                                        console.dir(error);
-         })
+                                    (error) => {console.dir("error:" + error)}
                                   );
    
-   return next;
   }
 
   //uzimanje proizvoda sa Firebase

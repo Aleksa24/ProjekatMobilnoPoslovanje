@@ -39,12 +39,21 @@ export class ProfilIzmeniPage implements OnInit {
   }
 
   updateUser(){
+
+    let pic: string;
+    if(this.formGroup.get('picture').value != null) {
+      pic = this.formGroup.get('picture').value;
+    } else {
+      pic = this.logedInUser.picture;
+    }
+
     console.log("usao je u metodu");
     let user = new User(
         this.logedInUser.id,
         this.logedInUser.email,
         this.logedInUser.isAdmin,
-        this.logedInUser.picture,
+        //this.logedInUser.picture,
+        pic,
         this.formGroup.get('username').value,
         this.formGroup.get('name').value,
         this.formGroup.get('lastName').value);
