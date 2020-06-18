@@ -6,6 +6,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { User } from 'src/app/model/User';
 import { AngularFireDatabase } from '@angular/fire/database';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 
 @Injectable({
@@ -25,9 +26,11 @@ export class AuthenticationService {
     
   }
 
+
+
   login(email: string, password: string){
       let headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
-      return this.http.post<User>("http://localhost:8080/api/v1/users/login",
+      return this.http.post<User>(environment.site+"/api/v1/users/login",
           {email,password},
           {headers: headers}).subscribe( (user) =>{
           this.curentUser = user;
@@ -49,11 +52,10 @@ export class AuthenticationService {
 
   logout():void{
       let headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
-      this.http.post<{message:string}>("http://localhost:8080/api/v1/users/logout",
+      this.http.post<{message:string}>(environment.site+"/api/v1/users/logout",
           JSON.stringify(this.curentUser),
           {headers: headers}).subscribe(
               (data) => {
-                  debugger;
               this.autenticationState.next(false);
               this.curentUser = new User(null,null,false,null,null,null,null);
               console.log(`Message from server:${data.message}`);
@@ -73,7 +75,7 @@ export class AuthenticationService {
 
   register(userToRegister: User) {
       let headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
-      return this.http.post<User>("http://localhost:8080/api/v1/users/register",
+      return this.http.post<User>(environment.site+"/api/v1/users/register",
           JSON.stringify(userToRegister),
           {headers: headers});
   }
@@ -82,12 +84,11 @@ export class AuthenticationService {
         let headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
 
         console.log(userToUpdate);
-        return this.http.put<User>("http://localhost:8080/api/v1/users/update",
+        return this.http.put<User>(environment.site+"/api/v1/users/update",
             JSON.stringify(userToUpdate),
             {headers: headers}).subscribe(
                 (updatedUser) =>
         {
-            debugger;
             console.log("updatedUser:");
             console.log(updatedUser);
             this.curentUser = updatedUser;
@@ -95,7 +96,6 @@ export class AuthenticationService {
             console.log(this.curentUser);
         },
             (error) =>{
-                    debugger;
                     console.dir(error);
             });
     }

@@ -5,8 +5,8 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireList } from '@angular/fire/database';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
 
- 
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +28,7 @@ export class ProductService {
     this.p = new Product(product.name, product.price, product.amount, product.imgUrl, product.desc);
     console.log("Proizvod: "+this.p);
 
-    return  this.http.post<Product>("http://localhost:8080/api/v1/product/save", 
+    return  this.http.post<Product>(environment.site+"/api/v1/product/save",
                                   JSON.stringify(this.p),
                                   {headers: headers}).subscribe(
                                     (error) => {console.dir("error:" + error)}
@@ -43,7 +43,7 @@ export class ProductService {
 
   //uzimanje proizvoda sa http req sa naseg servera
   getAllHTTP() {
-      return this.http.get<Product[]>("http://localhost:8080/api/v1/product");
+      return this.http.get<Product[]>(environment.site+"/api/v1/product");
       
      
       

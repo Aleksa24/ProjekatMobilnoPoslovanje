@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  firebaseApiKey: 'AIzaSyDsAisvPIsFXgtU2CiYZyHAmueqxgwi5d8'
+  firebaseApiKey: 'AIzaSyDsAisvPIsFXgtU2CiYZyHAmueqxgwi5d8',
+  site: 'https://server-mobilno-racunarstvo.herokuapp.com'
 };
 
 /*
